@@ -63,4 +63,13 @@ $(document).ready(function() {
 
   });
 
+
+  MBP.scaleFix();
+
+  // Media Queries Polyfill https://github.com/shichuan/mobile-html5-boilerplate/wiki/Media-Queries-Polyfill
+  yepnope({
+    test : Modernizr.mq('(min-width)'),
+    nope : ['js/libs/respond.min.js']
+  });
+
 });
