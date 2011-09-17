@@ -1,0 +1,10 @@
+.bundle
+.rspec
+.DS_Store
+.sass-cache/
+db/*.sqlite3
+log/*
+tmp/*
+public/system/*
+public/imgs_seed/*
+public/assets/*
