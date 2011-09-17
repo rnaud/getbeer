@@ -16,45 +16,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="main" data-role="page" class="type-home">
+<div id="main" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
 
-    <div data-role="header" data-theme="b" data-position="fixed">
+    <div data-role="header" data-theme="c" data-position="fixed">
     <h1>GetBeer</h1>
-    <a href="/" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
     </div>
 
   <div data-role="content">
-    <div class="content-secondary">
-      <h2><a href="/">GetBeer</a></h2>
-      <nav>
-        <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
-          <li data-role="list-divider">find beers</li>
-          <li><a href="/beers/search">Close beers</a></li>
-          <li><a href="/beers/search">Specific address</a></li>
-
-          <li data-role="list-divider">API</li>
-        </ul>
-      </nav>
-    </div>
-    <div class="content-primary">
       <%= yield %>
-    </div>
+  </div>
 
-    <div data-role="footer" class="footer-docs" data-theme="c">
-        <p>&copy; 2011 Foursquare Hackaton</p>
+    <div data-role="footer" class="nav-glyphish-example" data-theme="c" data-position="fixed">
+      <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+      <ul>
+        <li><a href="/" id="location" data-icon="custom">Map</a></li>
+        <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
+        <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+        <li><a href="#" id="add" data-icon="custom">Add a beer</a></li>
+      </ul>
+      </div>
     </div>
 </div>
-
-<% if Rails.env != "production" %>
-  <div style="margin: 0 20px; background: #ccc; padding: 10px;">
-  <h3>Params</h3>
-  <%= debug params %>
-  <h3>Session</h3>
-  <%= debug session %>
-  <h3>Flash</h3>
-  <%= debug flash %>
-  </div>
-<% end %>
 
 </body>
 </html>

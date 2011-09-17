@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem "settingslogic"
 gem "json"
 gem "typhoeus"
-gem "quimby"
+gem "quimby", :git => "git://github.com/pierrevalade/quimby.git"
 gem "geocoder"
 
 group :test do

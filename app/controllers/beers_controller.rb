@@ -19,10 +19,16 @@ class BeersController < ApplicationController
   def search
     if params[:address]
       coords = Geocoder.coordinates(params[:address])
+    end
+    if params[:lat] && params[:lng]
+      coords = [params[:lat], params[:lng]]
+    end
+    if coords
       search = GetBeer::SEARCH_TERMS.join(" OR ")
       json = foursquare.get("/tips/search", {:ll => "#{coords.first}, #{coords.last}", :query => search })
       @beers = Beer.tips_to_beers(json)
     end
+
 
     respond_to do |format|
       format.html # index.html.erb

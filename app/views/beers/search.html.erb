@@ -1,13 +1,13 @@
-
-<%= form_tag nil, :method => :get do %>
+<div data-role="fieldcontain">
+<%= form_tag "/beers/search", :method => :get do %>
   <%= label_tag "Address:" %>
-  <%= text_field_tag :address, params[:address] %>
-  <%= submit_tag "search" %>
+  <%= text_field_tag :address, params[:address], :type => "search" %>
 <% end %>
+</div>
 
 
 <% if @beers %>
-  <ul data-role="listview" data-theme="g">
+  <ul data-role="listview">
     <% @beers.each do |b| %>
     <li>
       <%= link_to venue_details_beers_path(:venue_id => b.venue_id) do %>
