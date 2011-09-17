@@ -20,10 +20,8 @@
 body {color: #444; background: #cde3ee asset_url("body-bg.png", image) top center;}
 h1, h2 {font-family: 'GoodDogRegular';}
 .ui-header h1.ui-title { color: #F79400;font-size: 20px; text-decoration: none;text-shadow: 0px 0px 1px white;}
-#content {margin: 0 auto; width: 960px;}
-
 #map_container { padding: 10px; background: #F4F4F4; border-radius: 20px;}
-#map {width: 100%; height: 500px;}
+#map {width: 100%; height: 400px;}
 
 .ui-body-c {background: rgba(247,148,0,.5) asset_url("body-bg.png", image) top center;}
 .ui-li-has-icon .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-icon {padding-left: 50px;min-height: 40px;}
