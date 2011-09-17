@@ -13,6 +13,8 @@ $(document).ready(function() {
   var siberia = new google.maps.LatLng(60, 105);
   var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
   var browserSupportFlag =  new Boolean();
+  var beer_icon = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f5c344/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
+  var me_icon = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-23b6fa/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/walkingtour.png";
 
   function setMap() {
     $("#map").height($("body").height()-160);
@@ -49,21 +51,15 @@ $(document).ready(function() {
     //settings the link with the right data
     $("a[href='/beers/search']").attr('href', '/beers/search?lat='+coords.Ka+"&lng="+coords.La);
 
-    $('#map').gmap({ 'center': coords });
-    console.log(coords);
     $.getJSON( '/beers/search.json', 'lat='+coords.Ka+'&lng='+coords.La, function(data) {
-      console.log(data);
       $.each( data, function(i, m) {
-        $('#map').gmap('addMarker', { 'position': new google.maps.LatLng(m.venue_lat, m.venue_lng), 'venue': m.venue_id, 'bounds':true, 'title': m.text, 'icon':new google.maps.MarkerImage('http://google-maps-icons.googlecode.com/files/music-rock.png') })
+        $('#map').gmap('addMarker', { 'position': new google.maps.LatLng(m.venue_lat, m.venue_lng), 'venue': m.venue_id, 'bounds':true, 'title': m.text, 'icon':new google.maps.MarkerImage(beer_icon) })
         .click(function() {
-          console.log($(this));
           $.mobile.changePage( "/beers/venue_details?venue_id="+$(this)[0].venue, { transition: "slideup"} );
-            //map.panTo( $(this).get(0).getPosition());
-            //$(clone).dialog({ 'modal': true, 'width': 530, 'title': m.text, 'resizable': false, 'draggable': false });
-            //$('#map').gmap('displayStreetView', 'streetview{0}'.replace('{0}', index), { 'position': $(this).get(0).getPosition() });
         });
-
       });
+    $('#map').gmap('addMarker', { 'position': coords, 'bounds':true, 'title': "me", 'icon':new google.maps.MarkerImage(me_icon) });
+    $('#map').gmap({ 'center': coords, "zoom": 14 });
     });
   }
 
