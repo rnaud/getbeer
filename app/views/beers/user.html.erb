@@ -1,21 +1,26 @@
-= sitemap("#{current_user.name} Profile")
+<%= sitemap("#{current_user.name} Profile") %>
 
-= see_more "https://developer.foursquare.com/docs/explore.html#req=users/self"
+<%= see_more "https://developer.foursquare.com/docs/explore.html#req=users/self" %>
 
-%table
-  %tr
-    %td First Name
-    %td= current_user.first_name
-  %tr
-    %td Last Name
-    %td= current_user.last_name 
-  %tr
-    %td Photo
-    %td= image_tag current_user.photo
-  %tr
-    %td Email
-    %td= current_user.email
-    
-  %tr
-    %td More
-    %td= link_to "See documentation", "https://developer.foursquare.com/docs/explore.html#req=users/self"
+<table>
+  <tr>
+    <td>First Name</td>
+    <td><%= current_user.first_name %></td>
+  </tr>
+  <tr>
+    <td>Last Name</td>
+    <td><%= current_user.last_name %></td>
+  </tr>
+  <tr>
+    <td>Photo</td>
+    <td><%= image_tag current_user.photo %></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td><%= current_user.email %></td>
+  </tr>
+  <tr>
+    <td>More</td>
+    <td><%= link_to "See documentation", "https://developer.foursquare.com/docs/explore.html#req=users/self"%></td>
+  </tr>
+</table>
