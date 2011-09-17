@@ -1,13 +1,13 @@
 <% sitemap "#{current_user.name}'s Recent Checkins" %>
 
 <% current_user.checkins.each do |checkin| %>
-.checkin
-  .venue
-    .icon
-      = image_tag(checkin.venue.icon) if checkin.venue
-    .content
-      .name= "@ #{checkin.venue.name}" if checkin.venue
-      .shout= checkin.shout
-      .time= time_ago_in_words(checkin.created_at)
-    /= checkin.inspect
+  <div class="checkin">
+    <%= image_tag(checkin.venue.icon) if checkin.venue %>
+    <%= "name @ #{checkin.venue.name}" if checkin.venue %>
+    <%= "shout @ #{checkin.shout}" %>
+    time ago : <%= time_ago_in_words(checkin.created_at) %>
+    <div class="inspect">
+      <%= checkin.inspect %>
+    </div>
+  </div>
 <% end %>

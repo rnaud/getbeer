@@ -2,13 +2,59 @@
 <html>
 <head>
   <title>Getbeer</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
   <%= stylesheet_link_tag    "application" %>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+  <script>
+    $(document).bind("mobileinit", function(){
+      $.mobile.touchOverflowEnabled = true;
+    });
+  </script>
+  <script type="text/javascript" src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="main" data-role="page" class="type-home">
 
-<%= yield %>
+    <div data-role="header" data-theme="b" data-position="fixed">
+    <h1>GetBeer</h1>
+    <a href="/" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
+    </div>
+
+  <div data-role="content">
+    <div class="content-secondary">
+      <h2><a href="/">GetBeer</a></h2>
+      <nav>
+        <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+          <li data-role="list-divider">find beers</li>
+          <li><a href="/beers/search">Close beers</a></li>
+          <li><a href="/beers/search">Specific address</a></li>
+
+          <li data-role="list-divider">API</li>
+        </ul>
+      </nav>
+    </div>
+    <div class="content-primary">
+      <%= yield %>
+    </div>
+
+    <div data-role="footer" class="footer-docs" data-theme="c">
+        <p>&copy; 2011 Foursquare Hackaton</p>
+    </div>
+</div>
+
+<% if Rails.env != "production" %>
+  <div style="margin: 0 20px; background: #ccc; padding: 10px;">
+  <h3>Params</h3>
+  <%= debug params %>
+  <h3>Session</h3>
+  <%= debug session %>
+  <h3>Flash</h3>
+  <%= debug flash %>
+  </div>
+<% end %>
 
 </body>
 </html>

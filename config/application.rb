@@ -9,6 +9,9 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+
 module Getbeer
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

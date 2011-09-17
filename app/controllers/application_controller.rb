@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   private
-
     def require_user
       unless current_user
         redirect_to root_path
@@ -16,7 +15,7 @@ class ApplicationController < ActionController::Base
       begin
         foursquare = Foursquare::Base.new(session[:access_token])
         @current_user ||= foursquare.users.find("self")
-      rescue Foursquare::InvalidAuth
+      rescue nil
         nil
       end
     end

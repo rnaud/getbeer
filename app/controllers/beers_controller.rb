@@ -1,3 +1,4 @@
+# encoding: utf-8
 class BeersController < ApplicationController
 
   before_filter :require_user
@@ -15,13 +16,20 @@ class BeersController < ApplicationController
   def friends
   end
 
-  def venues_search
-    if params[:name]
-      # venues is a hash, with keys that represents different type of results
-      # see "Response Fields" in this page: https://developer.foursquare.com/docs/venues/search.html
-      # for more details
-      @venues = foursquare.venues.search(:query => params[:name], :ll => "48.857,2.349")
+  def search
+    if params[:address]
+      coords = Geocoder.coordinates(params[:address])
+      search = GetBeer::SEARCH_TERMS.join(" OR ")
+      json = foursquare.get("/tips/search", {:ll => "#{coords.first}, #{coords.last}", :query => search })
+      @beers = Beer.tips_to_beers(json)
     end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+      format.json  { render :json => @beers }
+    end
+
   end
 
   def venue_details

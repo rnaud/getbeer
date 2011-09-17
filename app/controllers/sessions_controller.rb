@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
     @access_token = foursquare.access_token(code, callback_session_url)
     session[:access_token] = @access_token
 
-    redirect_to beers_path
+    redirect_to root_path
+  end
+
+  def logout
+    session[:access_token] = nil
+    redirect_to root_path
   end
 
 end

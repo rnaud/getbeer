@@ -4,6 +4,9 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $('#map').gmap({ 'center': '42.345573,-71.098326' });
+});

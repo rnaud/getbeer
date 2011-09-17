@@ -1,0 +1,21 @@
+
+<%= form_tag nil, :method => :get do %>
+  <%= label_tag "Address:" %>
+  <%= text_field_tag :address, params[:address] %>
+  <%= submit_tag "search" %>
+<% end %>
+
+
+<% if @beers %>
+  <ul data-role="listview" data-theme="g">
+    <% @beers.each do |b| %>
+    <li>
+      <%= link_to venue_details_beers_path(:venue_id => b.venue_id) do %>
+      <%= begin image_tag b.venue_icon, :class => "ui-li-icon" rescue nil end %>
+      <%= b.text %>
+      <span class="ui-li-count"><%= b.score.to_s %></span>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

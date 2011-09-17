@@ -1,9 +1,19 @@
-<h2>Examples</h2>
+<h2>Map</h2>
 
-<ul>
+<!--<ul>
   <li><%= link_to "Information about Current User", user_beers_path %></li>
   <li><%= link_to "List of Friends of Current User", friends_beers_path %></li>
   <li><%= link_to "List of Checkins from Current User", checkins_beers_path %></li>
-  <li><%= link_to "Search for Venues", venues_search_beers_path %></li>
+  <li><%= link_to "Search for Venues", search_beers_path %></li>
   <li><%= link_to "Get Details about a specific Venue", venue_details_beers_path %></li>
 </ul>
+-->
+
+<%= form_tag "/beers/search", :method => :get do %>
+  <%= label_tag "Address:" %>
+  <%= text_field_tag :address, params[:address] %>
+  <%= submit_tag "search" %>
+<% end %>
+
+<div id="map">
+</div>

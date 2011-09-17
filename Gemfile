@@ -18,6 +18,7 @@ gem "settingslogic"
 gem "json"
 gem "typhoeus"
 gem "quimby"
+gem "geocoder"
 
 group :test do
   # Pretty printed test output
