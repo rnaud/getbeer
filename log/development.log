@@ -1,0 +1,92 @@
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2011-09-17 10:36:34 +0200
+Served asset /rails.png - 200 OK (53ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-09-17 10:36:50 +0200
+  Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 4ms
+
+NameError (uninitialized constant Settingslogic):
+  app/models/settings.rb:1:in `<top (required)>'
+  app/controllers/application_controller.rb:26:in `foursquare'
+  app/controllers/sessions_controller.rb:5:in `new'
+
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-09-17 10:39:20 +0200
+  Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 6ms
+
+Errno::ENOENT (No such file or directory - /Users/rnaud/projects/getbeer/config/foursquare.yml):
+  app/controllers/application_controller.rb:26:in `foursquare'
+  app/controllers/sessions_controller.rb:5:in `new'
+
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-09-17 10:39:50 +0200
+  Processing by SessionsController#new as HTML
+Rendered sessions/new.html.erb within layouts/application (0.6ms)
+Compiled application.css  (1ms)  (pid 68430)
+Compiled application.js  (3ms)  (pid 68430)
+Compiled jquery.js  (4ms)  (pid 68430)
+Compiled jquery_ujs.js  (1ms)  (pid 68430)
+Completed 200 OK in 195ms (Views: 190.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2011-09-17 10:39:50 +0200
+Served asset /jquery_ujs.js - 200 OK (37ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2011-09-17 10:39:50 +0200
+Served asset /jquery.js - 200 OK (62ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2011-09-17 10:39:50 +0200
+Served asset /application.css - 200 OK (36ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2011-09-17 10:39:50 +0200
+Served asset /application.js - 200 OK (42ms)
+
+
+Started GET "/assets/connect.png" for 127.0.0.1 at 2011-09-17 10:39:51 +0200
+Served asset /connect.png - 404 Not Found (18ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/connect.png"):
+  
+
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/session/callback?error=redirect_uri_mismatch" for 127.0.0.1 at 2011-09-17 10:39:56 +0200
+  Processing by SessionsController#callback as HTML
+  Parameters: {"error"=>"redirect_uri_mismatch"}
+Completed 500 Internal Server Error in 4ms
+
+RuntimeError (no code provided):
+  app/controllers/sessions_controller.rb:10:in `callback'
+
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.3ms)
+
+
+Started GET "/session/callback?error=redirect_uri_mismatch" for 127.0.0.1 at 2011-09-17 10:40:04 +0200
+  Processing by SessionsController#callback as HTML
+  Parameters: {"error"=>"redirect_uri_mismatch"}
+Completed 500 Internal Server Error in 4ms
+
+RuntimeError (no code provided):
+  app/controllers/sessions_controller.rb:10:in `callback'
+
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered /Users/rnaud/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (4.3ms)
