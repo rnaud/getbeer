@@ -14,19 +14,25 @@ $(document).ready(function() {
   var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
   var browserSupportFlag =  new Boolean();
 
-  if(navigator.geolocation) {
-    browserSupportFlag = true;
-    navigator.geolocation.getCurrentPosition(function(position) {
-      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      centerAndRefreshMap(initialLocation);
-    }, function() {
+  function setMap() {
+    $("#map").height($("body").height()-160);
+    $('#map').gmap().gmap('refresh');
+    if(navigator.geolocation) {
+      browserSupportFlag = true;
+      navigator.geolocation.getCurrentPosition(function(position) {
+        initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        centerAndRefreshMap(initialLocation);
+      }, function() {
+        handleNoGeolocation(browserSupportFlag);
+      });
+    // Try Google Gears Geolocation
+    } else {
+      browserSupportFlag = false;
       handleNoGeolocation(browserSupportFlag);
-    });
-  // Try Google Gears Geolocation
-  } else {
-    browserSupportFlag = false;
-    handleNoGeolocation(browserSupportFlag);
+    }
   }
+
+
 
   function handleNoGeolocation(errorFlag) {
     if (errorFlag == true) {
@@ -40,7 +46,9 @@ $(document).ready(function() {
   }
 
   function centerAndRefreshMap(coords) {
-  $("a[href='/beers/search']").attr('href', '/beers/search?lat='+coords.Ka+"&lng="+coords.La)
+    //settings the link with the right data
+    $("a[href='/beers/search']").attr('href', '/beers/search?lat='+coords.Ka+"&lng="+coords.La);
+
     $('#map').gmap({ 'center': coords });
     console.log(coords);
     $.getJSON( '/beers/search.json', 'lat='+coords.Ka+'&lng='+coords.La, function(data) {
@@ -59,11 +67,15 @@ $(document).ready(function() {
     });
   }
 
-  $('#map').gmap({ 'center': '42.345573,-71.098326', 'zoom': 16 }).bind('init', function(evt, map) {
 
+
+
+  $('div').live('pagebeforecreate',function(event){
+    console.log("apage is being created");
+    setMap();
   });
 
-
+  setMap();
   MBP.scaleFix();
 
   // Media Queries Polyfill https://github.com/shichuan/mobile-html5-boilerplate/wiki/Media-Queries-Polyfill

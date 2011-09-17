@@ -16,27 +16,24 @@
     </tr>
   <% end %>
   <tr>
-    <td> Categories</td>
-    <td>
-      <% @venue.categories.each do |category| %>
-        <div><%= image_tag category["icon"]%> <%= category["name"] %></div>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
     <td> Checkins Count</td>
     <td><%= @venue.stats["checkinsCount"]%></td>
   </tr>
-  <tr>
-    <td> Photos</td>
-    <td>
-      <% @venue.photos.each do |photo| %>
-        <%= link_to image_tag(photo.square_100_url), photo.url %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td> More</td>
-    <td><%= link_to "See documentation", "https://developer.foursquare.com/docs/explore.html#req=venues/#{@venue_id}" %></td>
-  </tr>
+  <% if @venue.photos.length > 0 %>
+    <tr>
+      <td> Photos</td>
+      <td>
+        <% @venue.photos.each do |photo| %>
+          <%= link_to image_tag(photo.square_100_url), photo.url %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
 </table>
+
+<h2>Tips</h2>
+<ul data-role="listview">
+<% @tips["tips"]["items"].each do |t| %>
+<li><%= t["text"] %></li>
+<% end %>
+</ul>

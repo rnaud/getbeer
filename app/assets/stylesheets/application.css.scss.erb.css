@@ -17,15 +17,17 @@
     font-style: normal;
 }
 
-body {color: #444; background: #cde3ee asset_url("body-bg.png", image) top center;}
 /*h1, h2 {font-family: 'GoodDogRegular';}*/
-.ui-header h1.ui-title { color: #F79400;font-size: 20px; color:white; text-decoration: none; text-shadow: 0 0 3px #333;
+.ui-header h1.ui-title { color: rgba(247,148,0,1); font-size: 30px; text-decoration: none; text-shadow: 0 0 3px #fff; font-weight: bold;
+  letter-spacing: -2px;
   -webkit-animation-name: pulse;
 -webkit-animation-duration: 4s;
 -webkit-animation-iteration-count: infinite;}
 #map_container { padding: 10px; background: #F4F4F4; border-radius: 20px;}
-#map {width: 100%; height: 400px;}
+#map {width: 100%;}
 
+#address_search { display: none;}
+.ui-header .ui-title, .ui-footer .ui-title {margin: .2em 90px .2em;}
 .ui-body-c {background: rgba(247,148,0,.5) asset_url("body-bg.png", image) top center;}
 .ui-li-has-icon .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-icon {padding-left: 50px;min-height: 40px;}
 .nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
@@ -36,9 +38,3 @@ body {color: #444; background: #cde3ee asset_url("body-bg.png", image) top cente
 #beer .ui-icon { background:  asset_url("icons/88-beer-mug.png", image) 50% 50% no-repeat;  background-size: 22px 27px; }
 #venues .ui-icon { background:  asset_url("icons/07-map-marker.png", image) 50% 50% no-repeat;  background-size: 17px 24px; }
 #add .ui-icon { background:  asset_url("icons/152-rolodex.png", image) 50% 50% no-repeat;  background-size: 22px 24px; }
-
-@-webkit-keyframes pulse {
-  from { color: #ffffff; text-shadow: 0 0 3px #333;}
-  50% { color: #F4F4F4; text-shadow: 0 0 10px #ff5c00; }
-  to { color: #ffffff; text-shadow: 0 0 3px #333; }
-}

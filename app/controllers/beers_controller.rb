@@ -42,6 +42,7 @@ class BeersController < ApplicationController
     # default venue is the "Tour Eiffel"
     @venue_id = params[:venue_id] || "185194"
     @venue = foursquare.venues.find(@venue_id)
+    @tips = foursquare.get("venues/#{@venue_id}/tips")
   end
 
 end

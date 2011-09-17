@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Getbeer</title>
+  <title>getbeer</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
   <%= stylesheet_link_tag    "application" %>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
@@ -32,13 +32,13 @@
 
   <!-- Home screen icon  Mathias Bynens http://goo.gl/6nVq0 -->
   <!-- For iPhone 4 with high-resolution Retina display: -->
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/apple-touch-iconx114.png">
   <!-- For first-generation iPad: -->
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/apple-touch-iconx72.png">
   <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-  <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/apple-touch-iconx114.png">
   <!-- For nokia devices: -->
-  <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
+  <link rel="shortcut icon" href="assets/apple-touch-iconx114.png">
 
   <!--iOS web app, deletable if not needed -->
   <!--<meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,10 +51,10 @@
 <div id="main" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
 
     <div data-role="header" data-theme="c" data-position="fixed">
-    <h1>GetBeer</h1>
+    <h1><%= image_tag "beer-logo.png" %></h1>
     </div>
 
-  <div data-role="content">
+  <div data-role="content" id="content">
       <%= yield %>
   </div>
 
