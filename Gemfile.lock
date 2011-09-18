@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/pierrevalade/quimby.git
-  revision: 631073d78d044edf4faf054b1370708a3821a68c
+  revision: 24aec8a4e21c0c6e96f131f259d70638af323d2a
   specs:
     quimby (0.4.4)
       json
