@@ -1,0 +1,18 @@
+<div id="address_search" data-role="fieldcontain">
+<%= form_tag "/beers/venues", :method => :get do %>
+  <%= text_field_tag :address, params[:address], :type => "search" ,:placeholder => "venue.." %>
+<% end %>
+</div>
+
+<% if @venues %>
+  <ul data-role="listview">
+    <% @venues["nearby"].each do |v| %>
+    <li>
+      <%= link_to venue_details_beers_path(:venue_id => v.id), :"data-transition" => "slideup" do %>
+      <%= begin image_tag v.icon, :class => "ui-li-icon" rescue nil end %>
+      <%= v.name %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

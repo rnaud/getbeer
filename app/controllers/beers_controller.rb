@@ -1,7 +1,16 @@
 # encoding: utf-8
 class BeersController < ApplicationController
 
-  before_filter :require_user
+  before_filter :require_user, :get_coords
+
+  def get_coords
+    if params[:address]
+      @coords = Geocoder.coordinates(params[:address])
+    end
+    if params[:lat] && params[:lng]
+      @coords = [params[:lat], params[:lng]]
+    end
+  end
 
   def index
     # list all the examples
@@ -17,21 +26,25 @@ class BeersController < ApplicationController
   end
 
   def new
+    if @coords
+      @venues = foursquare.venues.search(:ll => "#{@coords.first}, #{@coords.last}")
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+    end
+  end
+
+  def create
   end
 
   def search
-    if params[:address]
-      coords = Geocoder.coordinates(params[:address])
-    end
-    if params[:lat] && params[:lng]
-      coords = [params[:lat], params[:lng]]
-    end
-    if coords
+    if @coords
       search = GetBeer::SEARCH_TERMS.join(" OR ")
-      json = foursquare.get("/tips/search", {:ll => "#{coords.first}, #{coords.last}", :query => search })
+      json = foursquare.get("/tips/search", {:ll => "#{@coords.first}, #{@coords.last}", :query => search })
       @beers = Beer.tips_to_beers(json)
     end
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,6 +52,19 @@ class BeersController < ApplicationController
       format.json  { render :json => @beers }
     end
 
+  end
+
+  def venues
+    if @coords
+      logger.info("gfdgfdgf")
+      @venues = foursquare.venues.search(:ll => "#{@coords.first}, #{@coords.last}")
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+      format.json  { render :json => @venues }
+    end
   end
 
   def venue_details

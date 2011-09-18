@@ -10,11 +10,11 @@ Getbeer::Application.routes.draw do
    resources :beers do
      collection do
        get :search
-       get 'user'
-       get 'checkins'
-       get 'friends'
-       get 'venues_search'
-       get 'venue_details'
+       get :venues
+       get :user
+       get :checkins
+       get :friends
+       get :venue_details
      end
    end
 

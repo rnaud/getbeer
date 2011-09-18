@@ -43,6 +43,9 @@ body.sessions_new div[data-role="footer"] {display: none;}
 body.sessions_new a[href="#search"] {display: none;}
 .search-form {display: none; text-align: center;}
 
+.ui-icon-loading {background-image: asset_url("loading.gif", image);}
+.spin {-webkit-animation-name: spinb;}
+
 
 .ui-btn-active {
 border: 1px solid #155678;

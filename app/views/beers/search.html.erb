@@ -8,7 +8,7 @@
   <ul data-role="listview">
     <% @beers.each do |b| %>
     <li>
-      <%= link_to venue_details_beers_path(:venue_id => b.venue_id) do %>
+      <%= link_to venue_details_beers_path(:venue_id => b.venue_id), :"data-transition" => "slideup" do %>
       <%= begin image_tag b.venue_icon, :class => "ui-li-icon" rescue nil end %>
       <%= b.text %>
       <span class="ui-li-count"><%= b.score.to_s %></span>

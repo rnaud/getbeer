@@ -2,14 +2,16 @@
 <head>
   <meta charset="utf-8">
 
+  <%= favicon_link_tag 'beer-icon.png' %>
   <title>getbeer</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
   <%= stylesheet_link_tag    "application" %>
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&key=ABQIAAAAl-IUE5-PNzD6MFUfJkhLWBRNx5mSnk_uhqemmKmNua51JBqGEhQyaWZWw4LawrjsczuHejSDYNi-og"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
   <script>
     $(document).bind("mobileinit", function(){
       $.mobile.touchOverflowEnabled = true;
+      $.mobile.loadingMessage = "getting beer..";
     });
   </script>
   <script type="text/javascript" src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
@@ -47,10 +49,10 @@
 
     <div data-role="header" data-theme="c" data-position="fixed">
     <h1><%= image_tag "beer-logo.png" %></h1>
-    <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
+    <a href="#" data-icon="search"  class="search-b ui-btn-right">Search</a>
 
     <div class="search-form" data-role="fieldcontain">
-        <input type="search" name="password" placeholder="address.." value="" />
+        <input type="search" name="address" placeholder="address.." value="" />
     </div>
 
     </div>
@@ -64,7 +66,7 @@
       <ul>
         <li><a href="/" id="location" data-icon="custom">Map</a></li>
         <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
-        <li><a href="#venues" id="venues" data-icon="custom">Venues</a></li>
+        <li><a href="/beers/venues" id="venues" data-icon="custom">Venues</a></li>
         <li><a href="/beers/new" id="add" data-icon="custom">Add</a></li>
         <li><a href="/pages/about" id="about-page" data-icon="custom">About</a></li>
       </ul>

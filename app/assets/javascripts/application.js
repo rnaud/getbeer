@@ -64,8 +64,14 @@ $(document).ready(function() {
     centerAndRefreshMap(initialLocation);
   }
 
+  function updateLinks(coords) {
+    $("a[href^='/beers/search']").attr('href', '/beers/search?lat='+coords.Ka+"&lng="+coords.La);
+    $("a[href^='/beers/new']").attr('href', '/beers/new?lat='+coords.Ka+"&lng="+coords.La);
+    $("a[href^='/beers/venues']").attr('href', '/beers/venues?lat='+coords.Ka+"&lng="+coords.La);
+  }
+
   function centerAndRefreshMap(coords) {
-    $("a[href='/beers/search']").attr('href', '/beers/search?lat='+coords.Ka+"&lng="+coords.La);
+    updateLinks(coords);
     //settings the link with the right data
     $.getJSON( '/beers/search.json', 'lat='+coords.Ka+'&lng='+coords.La, function(data) {
       $.each( data, function(i, m) {
@@ -103,7 +109,7 @@ $(document).ready(function() {
     setMap();
   });
 
-  $("a[href='#search']").live('click', function(e) {
+  $("a.search-b").live('click', function(e) {
     console.log("starting search");
     var id = $.mobile.activePage[0].id;
     $("#"+id+" div.search-form").fadeToggle(300, function() {
@@ -111,6 +117,20 @@ $(document).ready(function() {
     });
     e.preventDefault();
     e.stopPropagation();
+  });
+
+  $(".search-form input").keyup(function(event){
+    if(event.keyCode == 13){
+      var address = $(this).attr("value");
+      $.getJSON("http://maps.google.com/maps/geo?q="+ address+"&key=ABQIAAAAl-IUE5-PNzD6MFUfJkhLWBRNx5mSnk_uhqemmKmNua51JBqGEhQyaWZWw4LawrjsczuHejSDYNi-og&sensor=false&output=json&callback=?",
+        function(data, textStatus){
+          c = data.Placemark[0].Point.coordinates
+          initialLocation = new google.maps.LatLng(c[1], c[0]);
+          centerAndRefreshMap(initialLocation);
+          //data.Placemark[0].Point.coordinates
+          //console.log(data);
+        });
+    }
   });
 
   if (!$("body.sessions_new").length) {setMap();}
