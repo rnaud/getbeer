@@ -5,14 +5,19 @@ class Beer
   extend ActiveModel::Naming
 
 
-  attr_accessor :text, :price, :type, :qty, :score, :happy_hour, :venue_id, :venue_icon, :venue_lat, :venue_lng, :venue_name
+  attr_accessor :text, :price, :type, :qty, :score, :happy_hour, :venue_id, :venue_icon, :venue_lat, :venue_lng, :venue_name, :twitter
 
-  validates :type, :presence => {:message => 'Type cannot be blank, Beer not saved'}
+  validates :qty, :presence => true, :length => {:minimum => 2}
+  validates :type, :presence => true, :length => {:minimum => 2}
 
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+  end
+
+  def save(validate = true)
+    validate ? valid? : true
   end
 
   def persisted?

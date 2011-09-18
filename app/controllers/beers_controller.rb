@@ -40,14 +40,28 @@ class BeersController < ApplicationController
 
   def create
     @b = Beer.new(params[:beer])
+    @b.save
 
-    @b.text = "#{@b.qty} of #{@b.type} for #{@b.price} #{ puts "(happy hours only)" if @b.happy_hour == 1}- #{@b.text} #getbeer"
-
-    foursquare.post("/tips/add", {:venueId => @b.venue_id, :text => @b.text, :url => "http://getbeer.herokuapp.com", :broadcast => "twitter" })
+    comment = @b.text
+    @b.text = "#{@b.qty} of #{@b.type} for #{@b.price} "
+    @b.text += "(happy hours only) " if @b.happy_hour == "1"
+    @b.text += "- #{comment} #getbeer"
 
     respond_to do |format|
-      format.html
-      format.js
+      if @b.save
+        if @b.twitter == "1"
+          foursquare.post("/tips/add", {:venueId => @b.venue_id, :text => @b.text, :url => "http://getbeer.herokuapp.com", :broadcast => "twitter" })
+        else
+          foursquare.post("/tips/add", {:venueId => @b.venue_id, :text => @b.text, :url => "http://getbeer.herokuapp.com" })
+        end
+        format.html
+        format.js
+      else
+        @venues = foursquare.venues.search(:ll => "#{@coords.first}, #{@coords.last}")
+        @b.text = nil
+        format.html { render :action => "new" }
+        format.js
+      end
     end
   end
 

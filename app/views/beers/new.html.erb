@@ -29,6 +29,15 @@
       </fieldset>
   </div>
 
+  <div data-role="fieldcontain">
+    <fieldset data-role="controlgroup">
+      <%= f.check_box :twitter, :id => "checkbox-2" %>
+      <label for="checkbox-2">Broadcast on twitter</label>
+      </fieldset>
+  </div>
+
+  <%= hidden_field_tag :lat, params[:lat] %>
+  <%= hidden_field_tag :lng, params[:lng] %>
 
   <%= f.submit "Send", :"data-theme" => "a" %>
 
