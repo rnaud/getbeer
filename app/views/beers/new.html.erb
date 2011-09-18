@@ -1,2 +1,36 @@
 <h2>Add a beer</h2>
-Not yet
+
+
+<%= form_for(@b) do |f| %>
+<% if @b.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@b.errors.count, "error") %> prohibited this beer from being saved:</h2>
+
+    <ul>
+    <% @b.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3>Select a venue</h3>
+  <%= f.select :venue_id, options_for_select(@venues["nearby"].collect {|v| [ v.name, v.id ]}) %>
+<h3>Comment on the beer</h3>
+  <%= f.text_field :type, :size => 50, :placeholder => "Type of Beer" %>
+  <%= f.text_field :qty, :size => 50, :placeholder => "The quantity, 50cl, etc." %>
+  <%= f.text_field :price, :size => 50, :placeholder => "The price of the beer" %>
+  <%= f.text_area :text, :cols => 52, :rows => 5, :placeholder => "Your impression" %>
+
+  <div data-role="fieldcontain">
+    <fieldset data-role="controlgroup">
+      <%= f.check_box :happy_hour, :id => "checkbox-1" %>
+      <label for="checkbox-1">Only during happy hours</label>
+      </fieldset>
+  </div>
+
+
+  <%= f.submit "Send", :"data-theme" => "a" %>
+
+<% end %>
+

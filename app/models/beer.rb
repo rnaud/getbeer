@@ -5,7 +5,9 @@ class Beer
   extend ActiveModel::Naming
 
 
-  attr_accessor :text, :price, :type, :qty, :score, :venue_id, :venue_icon, :venue_lat, :venue_lng, :venue_name
+  attr_accessor :text, :price, :type, :qty, :score, :happy_hour, :venue_id, :venue_icon, :venue_lat, :venue_lng, :venue_name
+
+  validates :type, :presence => {:message => 'Type cannot be blank, Beer not saved'}
 
   def initialize(attributes = {})
     attributes.each do |name, value|

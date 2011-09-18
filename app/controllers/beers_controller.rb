@@ -30,6 +30,8 @@ class BeersController < ApplicationController
       @venues = foursquare.venues.search(:ll => "#{@coords.first}, #{@coords.last}")
     end
 
+    @b = Beer.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -37,6 +39,16 @@ class BeersController < ApplicationController
   end
 
   def create
+    @b = Beer.new(params[:beer])
+
+    @b.text = "#{@b.qty} of #{@b.type} for #{@b.price} #{ puts "(happy hours only)" if @b.happy_hour == 1}- #{@b.text} #getbeer"
+
+    foursquare.post("/tips/add", {:venueId => @b.venue_id, :text => @b.text, :url => "http://getbeer.herokuapp.com", :broadcast => "twitter" })
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def search
