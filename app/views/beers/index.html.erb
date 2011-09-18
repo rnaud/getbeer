@@ -9,8 +9,7 @@
 
 <div id="address_search" data-role="fieldcontain">
 <%= form_tag "/beers/search", :method => :get do %>
-  <%= label_tag "Address:" %>
-  <%= text_field_tag :address, params[:address], :type => "search" %>
+  <%= text_field_tag :address, params[:address], :type => "search", :placeholder => "address.." %>
 <% end %>
 </div>
 

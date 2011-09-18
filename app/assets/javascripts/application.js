@@ -7,6 +7,19 @@
 //= require jquery_ujs
 //= require_tree .
 
+var waitForFinalEvent = (function () {
+  var timers = {};
+  return function (callback, ms, uniqueId) {
+    if (!uniqueId) {
+      uniqueId = "Don't call this twice without a uniqueId";
+    }
+    if (timers[uniqueId]) {
+      clearTimeout (timers[uniqueId]);
+    }
+    timers[uniqueId] = setTimeout(callback, ms);
+  };
+})();
+
 $(document).ready(function() {
 
   var initialLocation;
@@ -59,16 +72,36 @@ $(document).ready(function() {
         });
       });
     $('#map').gmap('addMarker', { 'position': coords, 'bounds':true, 'title': "me", 'icon':new google.maps.MarkerImage(me_icon) });
-    $('#map').gmap({ 'center': coords, "zoom": 14 });
+    $('#map').gmap({ 'center': coords, "zoom": 16 });
     });
   }
 
+  $(window).resize(function () {
+      waitForFinalEvent(function(){
+        console.log("resized");
+        $("#map").height($("body").height()-160);
+        $('#map').gmap('refresh');
+        //...
+      }, 500, "some unique string");
+  });
 
 
-
-  $('div').live('pagebeforecreate',function(event){
+  $('div').live('pageinit',function(event){
     console.log("apage is being created");
+    //setMap();
+  });
+
+  $('div').live('pageshow',function(event, ui){
+    console.log('This page was just hidden: '+ ui.prevPage);
     setMap();
+  });
+
+  $("a[href='#search']").click(function(e){
+    console.log("starting search");
+    var id = $.mobile.activePage[0].id;
+    $("#"+id+" div[data-role='header']").append('<div data-role="navbar"><ul><li><a href="a.html" class="ui-btn-active">One</a></li><li><a href="b.html">Two</a></li></ul></div><!-- /navbar -->');
+    e.preventDefault();
+    e.stopPropagation();
   });
 
   setMap();

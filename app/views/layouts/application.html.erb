@@ -52,6 +52,7 @@
 
     <div data-role="header" data-theme="c" data-position="fixed">
     <h1><%= image_tag "beer-logo.png" %></h1>
+    <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
     </div>
 
   <div data-role="content" id="content">
@@ -64,10 +65,83 @@
         <li><a href="/" id="location" data-icon="custom">Map</a></li>
         <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
         <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
-        <li><a href="#" id="add" data-icon="custom">Add a beer</a></li>
+        <li><a href="#addbeer" id="add" data-icon="custom">Add</a></li>
+        <li><a href="#about" id="about" data-icon="custom">About</a></li>
       </ul>
       </div>
     </div>
+</div>
+
+<div id="addbeer" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
+  <div data-role="header" data-theme="c" data-position="fixed">
+  <h1><%= image_tag "beer-logo.png" %></h1>
+  <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
+  </div>
+  <div data-role="content" id="content">
+      <h2>Add a beer</h2>
+      Not yet
+  </div>
+  <div data-role="footer" class="nav-glyphish-example" data-theme="c" data-position="fixed">
+    <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+    <ul>
+      <li><a href="/" id="location" data-icon="custom">Map</a></li>
+      <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
+      <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+      <li><a href="#addbeer" id="add" data-icon="custom" class="ui-btn-active">Add</a></li>
+      <li><a href="#about" id="about" data-icon="custom">About</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+<div id="about" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
+  <div data-role="header" data-theme="c" data-position="fixed">
+  <h1><%= image_tag "beer-logo.png" %></h1>
+  <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
+  </div>
+  <div data-role="content" id="content">
+      <h2>getBeer ?</h2>
+      You wanna check out what's around you, where are the cheap beers ?
+      Here is getBeer.
+      <h2>About</h2>
+      Made for the Foursquare Hackaton by <a href="http://twitter.com/rnaud">rnaud</a>
+  </div>
+  <div data-role="footer" class="nav-glyphish-example" data-theme="c" data-position="fixed">
+    <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+    <ul>
+      <li><a href="/" id="location" data-icon="custom">Map</a></li>
+      <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
+      <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+      <li><a href="#addbeer" id="add" data-icon="custom">Add</a></li>
+      <li><a href="#about" id="about" data-icon="custom" class="ui-btn-active">About</a></li>
+    </ul>
+    </div>
+  </div>
+</div>
+
+<div id="about" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
+  <div data-role="header" data-theme="c" data-position="fixed">
+  <h1><%= image_tag "beer-logo.png" %></h1>
+  <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
+  </div>
+  <div data-role="content" id="content">
+      <h2>Venues closeby</h2>
+      You wanna check out what's around you, where are the cheap beers ?
+      Here is getBeer.
+      <h2>About</h2>
+      Made for the Foursquare Hackaton by <a href="http://twitter.com/rnaud">rnaud</a>
+  </div>
+  <div data-role="footer" class="nav-glyphish-example" data-theme="c" data-position="fixed">
+    <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
+    <ul>
+      <li><a href="/" id="location" data-icon="custom">Map</a></li>
+      <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
+      <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+      <li><a href="#addbeer" id="add" data-icon="custom">Add</a></li>
+      <li><a href="#about" id="about" data-icon="custom" class="ui-btn-active">About</a></li>
+    </ul>
+    </div>
+  </div>
 </div>
 
 </body>

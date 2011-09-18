@@ -24,8 +24,8 @@ h1 img {max-width: 100%; width: 120px;}
 #map {width: 100%;}
 
 #address_search { display: none;}
-.ui-header .ui-title, .ui-footer .ui-title {margin: .2em 90px .2em;}
-.ui-body-c {background: rgba(247,148,0,.5) asset_url("body-bg.png", image) top center;}
+.ui-header .ui-title, .ui-footer .ui-title {margin: 0.2em 90px -0.2em;}
+.ui-body-c {background: #fbca80 asset_url("body-bg.png", image) top center;}
 .ui-li-has-icon .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-icon {padding-left: 50px;min-height: 40px;}
 .nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
 .nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
@@ -35,3 +35,21 @@ h1 img {max-width: 100%; width: 120px;}
 #beer .ui-icon { background:  asset_url("icons/88-beer-mug.png", image) center center no-repeat;  }
 #venues .ui-icon { background:  asset_url("icons/07-map-marker.png", image) center center no-repeat; }
 #add .ui-icon { background:  asset_url("icons/152-rolodex.png", image) center center no-repeat;   }
+
+
+.ui-btn-active {
+border: 1px solid #155678;
+background: #f79400;
+font-weight: bold;
+color: white;
+cursor: pointer;
+text-shadow: 0 -1px 1px #145072;
+text-decoration: none;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#ffd79a),to(#ffbc59));
+background-image: -webkit-linear-gradient(top,#ffd79a,#ffbc59);
+background-image: -moz-linear-gradient(top,#ffd79a,#ffbc59);
+background-image: -ms-linear-gradient(top,#ffd79a,#ffbc59);
+background-image: -o-linear-gradient(top,#ffd79a,#ffbc59);
+background-image: linear-gradient(top,#ffd79a,#ffbc59);
+outline: 0;
+}
