@@ -1,9 +1,4 @@
 <!doctype html>
-<!-- Conditional comment for mobile ie7 http://blogs.msdn.com/b/iemobile/ -->
-<!-- Appcache Facts http://appcachefacts.info/ -->
-<!--[if IEMobile 7 ]>    <html class="no-js iem7" manifest="default.appcache?v=1"> <![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" manifest="default.appcache?v=1"> <!--<![endif]-->
-
 <head>
   <meta charset="utf-8">
 
@@ -47,12 +42,17 @@
 
   <meta http-equiv="cleartype" content="on">
 </head>
-<body>
+<body class="<%= controller.controller_name+'_'+action_name -%>">
 <div id="main" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
 
     <div data-role="header" data-theme="c" data-position="fixed">
     <h1><%= image_tag "beer-logo.png" %></h1>
     <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
+
+    <div class="search-form" data-role="fieldcontain">
+        <input type="search" name="password" placeholder="address.." value="" />
+    </div>
+
     </div>
 
   <div data-role="content" id="content">
@@ -62,11 +62,11 @@
     <div data-role="footer" class="nav-glyphish-example" data-theme="c" data-position="fixed">
       <div data-role="navbar" class="nav-glyphish-example" data-grid="d">
       <ul>
-        <li><a href="/" id="location" data-icon="custom">Map</a></li>
+        <li><a href="/" id="location" data-icon="custom" class="ui-btn-active">Map</a></li>
         <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
-        <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+        <li><a href="#venues" id="venues" data-icon="custom">Venues</a></li>
         <li><a href="#addbeer" id="add" data-icon="custom">Add</a></li>
-        <li><a href="#about" id="about" data-icon="custom">About</a></li>
+        <li><a href="#about" id="about-page" data-icon="custom">About</a></li>
       </ul>
       </div>
     </div>
@@ -86,9 +86,9 @@
     <ul>
       <li><a href="/" id="location" data-icon="custom">Map</a></li>
       <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
-      <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+      <li><a href="#venues" id="venues" data-icon="custom">Venues</a></li>
       <li><a href="#addbeer" id="add" data-icon="custom" class="ui-btn-active">Add</a></li>
-      <li><a href="#about" id="about" data-icon="custom">About</a></li>
+      <li><a href="#about" id="about-page" data-icon="custom">About</a></li>
     </ul>
     </div>
   </div>
@@ -97,7 +97,6 @@
 <div id="about" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
   <div data-role="header" data-theme="c" data-position="fixed">
   <h1><%= image_tag "beer-logo.png" %></h1>
-  <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
   </div>
   <div data-role="content" id="content">
       <h2>getBeer ?</h2>
@@ -111,18 +110,17 @@
     <ul>
       <li><a href="/" id="location" data-icon="custom">Map</a></li>
       <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
-      <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+      <li><a href="#venues" id="venues" data-icon="custom">Venues</a></li>
       <li><a href="#addbeer" id="add" data-icon="custom">Add</a></li>
-      <li><a href="#about" id="about" data-icon="custom" class="ui-btn-active">About</a></li>
+      <li><a href="#about" id="about-page" data-icon="custom" class="ui-btn-active">About</a></li>
     </ul>
     </div>
   </div>
 </div>
 
-<div id="about" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
+<div id="venues" data-role="page" data-theme="c" class="type-home" data-add-back-btn="true">
   <div data-role="header" data-theme="c" data-position="fixed">
   <h1><%= image_tag "beer-logo.png" %></h1>
-  <a href="#search" data-icon="search" class="ui-btn-right">Search</a>
   </div>
   <div data-role="content" id="content">
       <h2>Venues closeby</h2>
@@ -136,9 +134,9 @@
     <ul>
       <li><a href="/" id="location" data-icon="custom">Map</a></li>
       <li><a href="/beers/search" id="beer" data-icon="custom">Beers</a></li>
-      <li><a href="#" id="venues" data-icon="custom">Venues</a></li>
+      <li><a href="#venues" id="venues" data-icon="custom" class="ui-btn-active">Venues</a></li>
       <li><a href="#addbeer" id="add" data-icon="custom">Add</a></li>
-      <li><a href="#about" id="about" data-icon="custom" class="ui-btn-active">About</a></li>
+      <li><a href="#about" id="about-page" data-icon="custom" >About</a></li>
     </ul>
     </div>
   </div>

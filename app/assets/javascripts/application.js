@@ -27,11 +27,14 @@ $(document).ready(function() {
   var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
   var browserSupportFlag =  new Boolean();
   var beer_icon = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f5c344/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
+  var green_beer = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-ceeb8e/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
+  var normal_beer = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-ffaf4b/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
+  var red_beer = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-cc0000/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
   var me_icon = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-23b6fa/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/walkingtour.png";
 
   function setMap() {
-    $("#map").height($("body").height()-160);
-    $('#map').gmap().gmap('refresh');
+    $('#map').gmap();
+    resizeMap();
     if(navigator.geolocation) {
       browserSupportFlag = true;
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -66,7 +69,10 @@ $(document).ready(function() {
 
     $.getJSON( '/beers/search.json', 'lat='+coords.Ka+'&lng='+coords.La, function(data) {
       $.each( data, function(i, m) {
-        $('#map').gmap('addMarker', { 'position': new google.maps.LatLng(m.venue_lat, m.venue_lng), 'venue': m.venue_id, 'bounds':true, 'title': m.text, 'icon':new google.maps.MarkerImage(beer_icon) })
+        console.log(m);
+        var icon;
+        if (m.score > 4) {icon = green_beer; } else if (m.score > 1) {icon = normal_beer;} else {icon = red_beer;}
+        $('#map').gmap('addMarker', { 'position': new google.maps.LatLng(m.venue_lat, m.venue_lng), 'venue': m.venue_id, 'bounds':true, 'title': m.text, 'icon':new google.maps.MarkerImage(icon) })
         .click(function() {
           $.mobile.changePage( "/beers/venue_details?venue_id="+$(this)[0].venue, { transition: "slideup"} );
         });
@@ -76,11 +82,21 @@ $(document).ready(function() {
     });
   }
 
+  function resizeMap() {
+    var header = $(".ui-page-active div[data-role='header']").height();
+    var footer = $(".ui-page-active div[data-role='footer']").height();
+    var padding = 70;
+    console.log(header);
+    console.log(footer);
+    console.log(padding);
+    $("#map").height($("body").height()-header-footer-padding);
+    $('#map').gmap('refresh');
+  }
+
   $(window).resize(function () {
       waitForFinalEvent(function(){
         console.log("resized");
-        $("#map").height($("body").height()-160);
-        $('#map').gmap('refresh');
+        resizeMap();
         //...
       }, 500, "some unique string");
   });
@@ -99,12 +115,16 @@ $(document).ready(function() {
   $("a[href='#search']").click(function(e){
     console.log("starting search");
     var id = $.mobile.activePage[0].id;
-    $("#"+id+" div[data-role='header']").append('<div data-role="navbar"><ul><li><a href="a.html" class="ui-btn-active">One</a></li><li><a href="b.html">Two</a></li></ul></div><!-- /navbar -->');
+    $("#"+id+" div.search-form").fadeToggle(300, function() {
+      resizeMap();
+    });
     e.preventDefault();
     e.stopPropagation();
   });
 
-  setMap();
+  $(".search-form input").serialize();
+
+  if (!$("body.sessions_new").length) {setMap();}
   MBP.scaleFix();
 
   // Media Queries Polyfill https://github.com/shichuan/mobile-html5-boilerplate/wiki/Media-Queries-Polyfill
