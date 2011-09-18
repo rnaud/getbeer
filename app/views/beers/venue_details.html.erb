@@ -1,7 +1,7 @@
 <h2><%= @venue.name %></h2>
 <h4><%= @venue.location.address %></h4>
 
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@venue.location.lat},#{@venue.location.lng}&zoom=14&size=300x200&maptype=roadmap&sensor=false&&markers=color:blue%7Cicon:http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f5c344/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png%7C#{@venue.location.lat},#{@venue.location.lng}" %>
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@venue.location.lat},#{@venue.location.lng}&zoom=14&size=300x200&maptype=roadmap&sensor=false&&markers=color:blue%7Cicon:http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f5c344/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png%7C#{@venue.location.lat},#{@venue.location.lng}", :style=> "max-width: 100%;"%>
 
 <table>
   <tr>

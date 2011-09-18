@@ -91,7 +91,7 @@ $(document).ready(function() {
   function resizeMap() {
     var header = $(".ui-page-active div[data-role='header']").height();
     var footer = $(".ui-page-active div[data-role='footer']").height();
-    var padding = 70;
+    var padding = 25;
     $("#map").height($("body").height()-header-footer-padding);
     $('#map').gmap('refresh');
   }
