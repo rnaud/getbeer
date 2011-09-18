@@ -16,6 +16,9 @@ class BeersController < ApplicationController
   def friends
   end
 
+  def new
+  end
+
   def search
     if params[:address]
       coords = Geocoder.coordinates(params[:address])

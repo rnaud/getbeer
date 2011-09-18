@@ -22,7 +22,7 @@ var waitForFinalEvent = (function () {
 
 $(document).ready(function() {
 
-  var initialLocation;
+  initialLocation = 0;
   var siberia = new google.maps.LatLng(60, 105);
   var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
   var browserSupportFlag =  new Boolean();
@@ -31,6 +31,7 @@ $(document).ready(function() {
   var normal_beer = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-ffaf4b/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
   var red_beer = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-cc0000/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png";
   var me_icon = "http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-23b6fa/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/walkingtour.png";
+  var beer_url = "/beers/search";
 
   function setMap() {
     $('#map').gmap();
@@ -64,12 +65,10 @@ $(document).ready(function() {
   }
 
   function centerAndRefreshMap(coords) {
-    //settings the link with the right data
     $("a[href='/beers/search']").attr('href', '/beers/search?lat='+coords.Ka+"&lng="+coords.La);
-
+    //settings the link with the right data
     $.getJSON( '/beers/search.json', 'lat='+coords.Ka+'&lng='+coords.La, function(data) {
       $.each( data, function(i, m) {
-        console.log(m);
         var icon;
         if (m.score > 4) {icon = green_beer; } else if (m.score > 1) {icon = normal_beer;} else {icon = red_beer;}
         $('#map').gmap('addMarker', { 'position': new google.maps.LatLng(m.venue_lat, m.venue_lng), 'venue': m.venue_id, 'bounds':true, 'title': m.text, 'icon':new google.maps.MarkerImage(icon) })
@@ -79,6 +78,7 @@ $(document).ready(function() {
       });
     $('#map').gmap('addMarker', { 'position': coords, 'bounds':true, 'title': "me", 'icon':new google.maps.MarkerImage(me_icon) });
     $('#map').gmap({ 'center': coords, "zoom": 16 });
+    //$("#map").gmap('clearMarkers');
     });
   }
 
@@ -86,9 +86,6 @@ $(document).ready(function() {
     var header = $(".ui-page-active div[data-role='header']").height();
     var footer = $(".ui-page-active div[data-role='footer']").height();
     var padding = 70;
-    console.log(header);
-    console.log(footer);
-    console.log(padding);
     $("#map").height($("body").height()-header-footer-padding);
     $('#map').gmap('refresh');
   }
@@ -101,18 +98,12 @@ $(document).ready(function() {
       }, 500, "some unique string");
   });
 
-
-  $('div').live('pageinit',function(event){
-    console.log("apage is being created");
-    //setMap();
-  });
-
   $('div').live('pageshow',function(event, ui){
     console.log('This page was just hidden: '+ ui.prevPage);
     setMap();
   });
 
-  $("a[href='#search']").click(function(e){
+  $("a[href='#search']").live('click', function(e) {
     console.log("starting search");
     var id = $.mobile.activePage[0].id;
     $("#"+id+" div.search-form").fadeToggle(300, function() {
@@ -121,8 +112,6 @@ $(document).ready(function() {
     e.preventDefault();
     e.stopPropagation();
   });
-
-  $(".search-form input").serialize();
 
   if (!$("body.sessions_new").length) {setMap();}
   MBP.scaleFix();

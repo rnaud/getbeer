@@ -53,6 +53,7 @@ GEM
     execjs (1.2.6)
       multi_json (~> 1.0)
     geocoder (1.0.3)
+    high_voltage (1.0.1)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.14)
@@ -126,6 +127,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
   geocoder
+  high_voltage
   jquery-rails
   json
   pg

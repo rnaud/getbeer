@@ -20,6 +20,8 @@ gem "typhoeus"
 gem "quimby", :git => "git://github.com/pierrevalade/quimby.git"
 gem "geocoder"
 
+gem "high_voltage"
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
