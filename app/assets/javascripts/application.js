@@ -92,7 +92,8 @@ $(document).ready(function() {
     var header = $(".ui-page-active div[data-role='header']").height();
     var footer = $(".ui-page-active div[data-role='footer']").height();
     var padding = 25;
-    $("#map").height($("body").height()-header-footer-padding);
+    var body = window.innerHeight ? window.innerHeight : $(window).height();
+    $("#map").height(body-header-footer-padding);
     $('#map').gmap('refresh');
   }
 
