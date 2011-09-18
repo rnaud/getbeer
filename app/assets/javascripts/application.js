@@ -20,6 +20,13 @@ var waitForFinalEvent = (function () {
   };
 })();
 
+function isiPhone(){
+    return (
+        (navigator.platform.indexOf("iPhone") != -1) ||
+        (navigator.platform.indexOf("iPod") != -1)
+    );
+}
+
 $(document).ready(function() {
 
   initialLocation = 0;
@@ -93,7 +100,9 @@ $(document).ready(function() {
     var footer = $(".ui-page-active div[data-role='footer']").height();
     var padding = 25;
     var body = window.innerHeight ? window.innerHeight : $(window).height();
-    $("#map").height(body-header-footer-padding);
+    var new_height = body-header-footer-padding;
+    if (isiPhone()) new_height += 20
+    $("#map").height(new_height);
     $('#map').gmap('refresh');
   }
 
