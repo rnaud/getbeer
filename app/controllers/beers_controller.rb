@@ -56,7 +56,6 @@ class BeersController < ApplicationController
 
   def venues
     if @coords
-      logger.info("gfdgfdgf")
       @venues = foursquare.venues.search(:ll => "#{@coords.first}, #{@coords.last}")
     end
 

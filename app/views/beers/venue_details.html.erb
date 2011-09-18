@@ -1,20 +1,9 @@
 <h2><%= @venue.name %></h2>
+<h4><%= @venue.location.address %></h4>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@venue.location.lat},#{@venue.location.lng}&zoom=14&size=300x200&maptype=roadmap&sensor=false&&markers=color:blue%7Cicon:http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f5c344/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/bar.png%7C#{@venue.location.lat},#{@venue.location.lng}" %>
 
 <table>
-  <tr>
-    <td> Name</td>
-    <td><%= @venue.name %></td>
-  </tr>
-  <tr>
-    <td> Location</td>
-    <td><%= @venue.location.address %></td>
-  <tr>
-  <% if @venue.primary_category %>
-    <tr>
-      <td> Primary Category</td>
-      <td><%= @venue.primary_category.name%></td>
-    </tr>
-  <% end %>
   <tr>
     <td> Checkins Count</td>
     <td><%= @venue.stats["checkinsCount"]%></td>

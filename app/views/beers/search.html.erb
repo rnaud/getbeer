@@ -10,7 +10,8 @@
     <li>
       <%= link_to venue_details_beers_path(:venue_id => b.venue_id), :"data-transition" => "slideup" do %>
       <%= begin image_tag b.venue_icon, :class => "ui-li-icon" rescue nil end %>
-      <%= b.text %>
+      <h3><%= b.venue_name %></h3>
+      <p><%= b.text %></p>
       <span class="ui-li-count"><%= b.score.to_s %></span>
       <% end %>
     </li>

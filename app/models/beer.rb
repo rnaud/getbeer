@@ -5,7 +5,7 @@ class Beer
   extend ActiveModel::Naming
 
 
-  attr_accessor :text, :price, :type, :qty, :score, :venue_id, :venue_icon, :venue_lat, :venue_lng
+  attr_accessor :text, :price, :type, :qty, :score, :venue_id, :venue_icon, :venue_lat, :venue_lng, :venue_name
 
   def initialize(attributes = {})
     attributes.each do |name, value|
@@ -25,6 +25,7 @@ class Beer
       b = Beer.new(
         :text => t["text"],
         :venue_id => t["venue"]["id"],
+        :venue_name => t["venue"]["name"],
         :venue_icon => icon,
         :score => t["text"].tip_score,
         :venue_lat => t["venue"]["location"]["lat"],
